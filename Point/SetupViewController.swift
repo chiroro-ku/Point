@@ -55,11 +55,11 @@ class SetupViewController: UIViewController {
             return
         }
         
-        let previousPoint = touchevent.previousLocation(in: self.view)
-        let point = touchevent.location(in: self.view)
+        let previousLocation = touchevent.previousLocation(in: self.view)
+        let touchesLocation = touchevent.location(in: self.view)
         
-        let deltaX = point.x - previousPoint.x
-        let deltaY = point.y - previousPoint.y
+        let deltaX = touchesLocation.x - previousLocation.x
+        let deltaY = touchesLocation.y - previousLocation.y
         
         touchesView.frame.origin.x += deltaX
         touchesView.frame.origin.y += deltaY
