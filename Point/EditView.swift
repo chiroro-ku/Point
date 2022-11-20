@@ -39,9 +39,9 @@ class EditView: UIView {
             return
         }
         
-        let touchesPoint = touchesEvent.location(in: touchesView.superview)
-        let targetPoint = touchesView.center
-        let angle = atan2(targetPoint.y-touchesPoint.y, targetPoint.x-touchesPoint.x)
+        let touchesLocation = touchesEvent.location(in: touchesView.superview)
+        let targetCenter = touchesView.center
+        let angle = atan2(targetCenter.y-touchesLocation.y, targetCenter.x-touchesLocation.x)
         touchesView.rotated(by: angle)
     }
     
