@@ -13,6 +13,10 @@
 		F6A9D7DB29277E4C009F02F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6A9D7D929277E4C009F02F4 /* Main.storyboard */; };
 		F6A9D7DD29277E53009F02F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6A9D7DC29277E53009F02F4 /* Assets.xcassets */; };
 		F6A9D7E029277E53009F02F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6A9D7DE29277E53009F02F4 /* LaunchScreen.storyboard */; };
+		F6A9D8052927EEAF009F02F4 /* BoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A9D8042927EEAF009F02F4 /* BoneView.swift */; };
+		F6A9D80929280088009F02F4 /* OdorikoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A9D80829280088009F02F4 /* OdorikoModel.swift */; };
+		F6A9D80B292800CA009F02F4 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A9D80A292800CA009F02F4 /* EditView.swift */; };
+		F6A9D80D2929F9D7009F02F4 /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A9D80C2929F9D7009F02F4 /* SetupViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		F6A9D7DC29277E53009F02F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F6A9D7DF29277E53009F02F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F6A9D7E129277E53009F02F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F6A9D8042927EEAF009F02F4 /* BoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoneView.swift; sourceTree = "<group>"; };
+		F6A9D80829280088009F02F4 /* OdorikoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OdorikoModel.swift; sourceTree = "<group>"; };
+		F6A9D80A292800CA009F02F4 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
+		F6A9D80C2929F9D7009F02F4 /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +71,10 @@
 				F6A9D7DC29277E53009F02F4 /* Assets.xcassets */,
 				F6A9D7DE29277E53009F02F4 /* LaunchScreen.storyboard */,
 				F6A9D7E129277E53009F02F4 /* Info.plist */,
+				F6A9D8042927EEAF009F02F4 /* BoneView.swift */,
+				F6A9D80829280088009F02F4 /* OdorikoModel.swift */,
+				F6A9D80A292800CA009F02F4 /* EditView.swift */,
+				F6A9D80C2929F9D7009F02F4 /* SetupViewController.swift */,
 			);
 			path = Point;
 			sourceTree = "<group>";
@@ -138,9 +150,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6A9D8052927EEAF009F02F4 /* BoneView.swift in Sources */,
 				F6A9D7D829277E4C009F02F4 /* ViewController.swift in Sources */,
+				F6A9D80B292800CA009F02F4 /* EditView.swift in Sources */,
 				F6A9D7D429277E4C009F02F4 /* AppDelegate.swift in Sources */,
 				F6A9D7D629277E4C009F02F4 /* SceneDelegate.swift in Sources */,
+				F6A9D80929280088009F02F4 /* OdorikoModel.swift in Sources */,
+				F6A9D80D2929F9D7009F02F4 /* SetupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
