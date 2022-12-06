@@ -51,4 +51,17 @@ class OdorikoModel{
         self.body.addSubview(leftUpperLeg)
         self.leftUpperLeg.addSubview(leftLeg)
     }
+    
+    func modelChangeColor(color: UIColor){
+        self.face.backgroundColor = color
+        self.body.backgroundColor = color
+        self.rightUpperArm.backgroundColor = color
+        self.rightArm.backgroundColor = color
+        self.leftUpperArm.backgroundColor = color
+        self.leftArm.backgroundColor = color
+        self.rightUpperLeg.backgroundColor = color
+        self.rightLeg.backgroundColor = color
+        self.leftUpperLeg.backgroundColor = color
+        self.leftLeg.backgroundColor = color
+    }
 }
