@@ -9,7 +9,6 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    
     @IBOutlet weak var teamNameField: UITextField!
     @IBOutlet weak var ageButton: UIButton!
     @IBOutlet weak var performanceNameField: UITextField!
@@ -32,7 +31,7 @@ class ViewController: UIViewController {
         
         self.teamNameField.delegate = self
         self.performanceNameField.delegate = self
-        self.modelColorWell.addAction(.init{_ in self.modelChangeColor(color: self.modelColorWell.selectedColor ?? .green)}, for: .allEvents)
+        self.modelColorWell.addAction(.init{_ in self.modelColorChange(color: self.modelColorWell.selectedColor ?? .green)}, for: .allEvents)
         
         
         self.closeButton.isHidden = true
@@ -55,10 +54,6 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         self.infoLabelLoad()
-        
-        let interaction = UIContextMenuInteraction(delegate: self)
-        self.editView.odorikoModel.face.addInteraction(interaction)
-        self.editView.isUserInteractionEnabled = true
     }
     
     
@@ -141,39 +136,26 @@ class ViewController: UIViewController {
         self.undoSubButton.isHidden = !undoSubButton.isHidden
     }
     
-    private func modelChangeColor(color: UIColor){
-        self.editView.odorikoModel.modelChangeColor(color: color)
+    private func modelColorChange(color: UIColor){
+        self.editView.odorikoModel.colorChange(color: color)
         
     }
 }
 
 extension ViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.teamNameField.resignFirstResponder()
-        self.performanceNameField.resignFirstResponder()
+        
+        if teamNameField.isFirstResponder {
+            self.performanceNameField.becomeFirstResponder()
+        }else if performanceNameField.isFirstResponder {
+            self.performanceNameField.resignFirstResponder()
+        }
+        
+        //self.teamNameField.resignFirstResponder()
+        //self.performanceNameField.resignFirstResponder()
+        
         self.infoLabelLoad()
         return true
-    }
-}
-
-extension ViewController: UIContextMenuInteractionDelegate {
-    func contextMenuInteraction(_ interaction: UIContextMenuInteraction,
-                                configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
-        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider: { suggestedActions in
-            let up = UIAction(title: "UP", image: UIImage(systemName: "figure.wave")) { action in
-                print("up")
-            }
-            let right = UIAction(title: "RIGHT", image: UIImage(systemName: "bag")) { action in
-                print("right")
-            }
-            let left = UIAction(title: "LEFT", image: UIImage(systemName: "hare")) { action in
-                print("left")
-            }
-            let down = UIAction(title: "DOWN", image: UIImage(systemName: "figure.walk")) { action in
-                print("down")
-            }
-            return UIMenu(title: "Direction", children: [up, right, left, down])
-        })
     }
 }
 
