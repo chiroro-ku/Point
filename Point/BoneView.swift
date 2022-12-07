@@ -39,24 +39,17 @@ class BoneView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func addSubview(_ view: UIView) {
+    func addSubBoneView(_ view: BoneView, _ anchorPoint: CGPoint = CGPoint(x: 0.5, y: 0)){
         super.addSubview(view)
         
-        guard let boneView = view as? BoneView else {
-            return
-        }
+        let frame = view.frame
+        view.anchorPoint = anchorPoint
+        view.frame = frame
         
-        let frame = boneView.frame
-        boneView.anchorPoint = CGPoint(x: 0.5, y: 0)
-        boneView.frame = frame
-        
-        self.subBones.append(boneView)
+        self.subBones.append(view)
     }
     
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        let name = self.backgroundColor?.accessibilityName ?? "error"
-        
-        print(name)
         
         if !subBones.isEmpty {
             for subBone in subBones {

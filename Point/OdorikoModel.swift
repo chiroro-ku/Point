@@ -30,13 +30,18 @@ class OdorikoModel{
     init(facePoint: CGPoint){
         
         self.face = BoneView(frame: CGRect(origin: facePoint, size: faceSize), color: color)
+        
         self.body = BoneView(frame: CGRect(origin: CGPoint(x: face.frame.width/2, y: face.frame.height), size: bodySize), color: color)
+        
         self.rightUpperArm = BoneView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: boneSize), color: color)
         self.rightArm = BoneView(frame: CGRect(origin: CGPoint(x: rightUpperArm.frame.width/2, y: rightUpperArm.frame.height), size: boneSize), color: color)
+        
         self.leftUpperArm = BoneView(frame: CGRect(origin: CGPoint(x: body.frame.width, y: 0), size: boneSize), color: color)
         self.leftArm = BoneView(frame: CGRect(origin: CGPoint(x: leftUpperArm.frame.width/2, y: rightUpperArm.frame.height), size: boneSize), color: color)
+        
         self.rightUpperLeg = BoneView(frame: CGRect(origin: CGPoint(x: boneSize.width/2, y: bodySize.height), size: boneSize), color: color)
         self.rightLeg = BoneView(frame: CGRect(origin: CGPoint(x: rightUpperLeg.frame.width/2, y: rightUpperLeg.frame.height), size: boneSize), color: color)
+        
         self.leftUpperLeg = BoneView(frame: CGRect(origin: CGPoint(x: body.frame.width-boneSize.width/2, y: body.frame.height), size: boneSize), color: color)
         self.leftLeg = BoneView(frame: CGRect(origin: CGPoint(x: leftUpperLeg.frame.width/2, y: leftUpperLeg.frame.height), size: boneSize), color: color)
         
@@ -52,7 +57,39 @@ class OdorikoModel{
         self.leftUpperLeg.addSubview(leftLeg)
     }
     
-    func modelChangeColor(color: UIColor){
+    init(center point:CGPoint){
+        
+        self.body = BoneView(frame: CGRect(origin: CGPoint(x: point.x, y: point.y), size: bodySize), color: color)
+        print(point)
+        print(self.body.center)
+        
+        self.face = BoneView(frame: CGRect(origin: CGPoint(x: faceSize.width/2, y: -faceSize.height), size: faceSize), color: color)
+        self.face.layer.cornerRadius = face.frame.width/2
+        
+        self.rightUpperArm = BoneView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: boneSize), color: color)
+        self.rightArm = BoneView(frame: CGRect(origin: CGPoint(x: rightUpperArm.frame.width/2, y: rightUpperArm.frame.height), size: boneSize), color: color)
+        
+        self.leftUpperArm = BoneView(frame: CGRect(origin: CGPoint(x: body.frame.width, y: 0), size: boneSize), color: color)
+        self.leftArm = BoneView(frame: CGRect(origin: CGPoint(x: leftUpperArm.frame.width/2, y: rightUpperArm.frame.height), size: boneSize), color: color)
+        
+        self.rightUpperLeg = BoneView(frame: CGRect(origin: CGPoint(x: boneSize.width/2, y: bodySize.height), size: boneSize), color: color)
+        self.rightLeg = BoneView(frame: CGRect(origin: CGPoint(x: rightUpperLeg.frame.width/2, y: rightUpperLeg.frame.height), size: boneSize), color: color)
+        
+        self.leftUpperLeg = BoneView(frame: CGRect(origin: CGPoint(x: body.frame.width-boneSize.width/2, y: body.frame.height), size: boneSize), color: color)
+        self.leftLeg = BoneView(frame: CGRect(origin: CGPoint(x: leftUpperLeg.frame.width/2, y: leftUpperLeg.frame.height), size: boneSize), color: color)
+        
+        self.body.addSubBoneView(face, CGPoint(x: 0.5, y: 1.0))
+        self.body.addSubBoneView(rightUpperArm)
+        self.rightUpperArm.addSubBoneView(rightArm)
+        self.body.addSubBoneView(leftUpperArm)
+        self.leftUpperArm.addSubBoneView(leftArm)
+        self.body.addSubBoneView(rightUpperLeg)
+        self.rightUpperLeg.addSubBoneView(rightLeg)
+        self.body.addSubBoneView(leftUpperLeg)
+        self.leftUpperLeg.addSubBoneView(leftLeg)
+    }
+    
+    func colorChange(color: UIColor){
         self.face.backgroundColor = color
         self.body.backgroundColor = color
         self.rightUpperArm.backgroundColor = color
