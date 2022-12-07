@@ -30,6 +30,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         self.teamNameField.delegate = self
+        self.ageButton.addTarget(self, action: #selector(ageButtonTapped(_:)), for: .touchUpInside)
+        
         self.performanceNameField.delegate = self
         self.modelColorWell.addAction(.init{_ in self.modelColorChange(color: self.modelColorWell.selectedColor ?? .green)}, for: .allEvents)
         
@@ -56,7 +58,9 @@ class ViewController: UIViewController {
         self.infoLabelLoad()
     }
     
-    
+    @objc private func ageButtonTapped(_ sender: UIButton) {
+        
+    }
     
     @objc private func closeButtonTapped(_ sender: UIButton) {
         self.textView.resignFirstResponder()

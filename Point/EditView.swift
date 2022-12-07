@@ -27,10 +27,10 @@ class EditView: UIView {
     
     private func editViewInit(){
         
-        let facePoint = CGPoint(x: frame.width/2, y: frame.height/3)
-        self.odorikoModel = OdorikoModel(center: facePoint)
+        let point = CGPoint(x: frame.width/2, y: frame.height/2)
+        self.odorikoModel = OdorikoModel(center: point)
         
-        self.addSubview(odorikoModel.body)
+        self.addSubview(odorikoModel.centerBody())
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
