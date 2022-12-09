@@ -29,6 +29,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let documentDirPath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
+        print(documentDirPath)
+        
         self.teamNameField.delegate = self
         self.ageButton.addTarget(self, action: #selector(ageButtonTapped(_:)), for: .touchUpInside)
         

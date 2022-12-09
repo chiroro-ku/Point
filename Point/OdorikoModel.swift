@@ -59,7 +59,7 @@ class OdorikoModel{
     
     init(center point:CGPoint){
         
-        self.body = BoneView(frame: CGRect(origin: point, size: bodySize), color: color)
+        self.body = BoneView(body: CGRect(origin: point, size: bodySize), color: color)
         
         self.face = BoneView(frame: CGRect(origin: CGPoint(x: faceSize.width/2, y: -faceSize.height), size: faceSize), color: color)
         self.face.layer.cornerRadius = face.frame.width/2

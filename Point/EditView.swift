@@ -27,7 +27,7 @@ class EditView: UIView {
     
     private func editViewInit(){
         
-        let point = CGPoint(x: frame.width/2, y: frame.height/2)
+        let point = CGPoint(x: frame.width/2, y: frame.height/3)
         self.odorikoModel = OdorikoModel(center: point)
         
         self.addSubview(odorikoModel.centerBody())
