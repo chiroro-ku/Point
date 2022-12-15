@@ -27,6 +27,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var undoButton: UIButton!
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         let documentDirPath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)
@@ -36,6 +37,7 @@ class ViewController: UIViewController {
         self.ageButton.addTarget(self, action: #selector(ageButtonTapped(_:)), for: .touchUpInside)
         
         self.performanceNameField.delegate = self
+        self.partButton.addTarget(self, action: #selector(partButtonTapped(_:)), for: .touchUpInside)
         self.modelColorWell.addAction(.init{_ in self.modelColorChange(color: self.modelColorWell.selectedColor ?? .green)}, for: .allEvents)
         
         
@@ -63,10 +65,26 @@ class ViewController: UIViewController {
     
     @objc private func ageButtonTapped(_ sender: UIButton) {
         
+        let list = ["2018","2019","2020","2021","2022"]
+        
+        self.ageButton.setTitle("-", for: .normal)
+        self.pickerViewControllerLoad(list)
+        
+    }
+    
+    @objc private func partButtonTapped(_ sender: UIButton) {
+        
+        let list = ["共通","男振り","女振り","特殊"]
+        
+        self.partButton.setTitle("-", for: .normal)
+        self.pickerViewControllerLoad(list)
+        
     }
     
     @objc private func closeButtonTapped(_ sender: UIButton) {
+        
         self.textView.resignFirstResponder()
+        
     }
     
     @objc private func doneButtonTapped(_ sender: UIButton) {
@@ -111,14 +129,32 @@ class ViewController: UIViewController {
     }
     
     @objc func keyboardWillHide() {
+        
         if self.view.frame.origin.y != 0 {
             self.view.frame.origin.y = 0
         }
+        
+    }
+    
+    private func pickerViewControllerLoad(_ list: [String]) {
+        
+        guard let pickerViewController = storyboard?.instantiateViewController(withIdentifier: "pickerViewController") as? PickerViewController else {
+            return
+        }
+        
+        pickerViewController.modalPresentationStyle = .fullScreen
+        pickerViewController.list = list
+        pickerViewController.delegate = self
+        self.present(pickerViewController, animated: true)
+        
+        self.infoLabelLoad()
+        
     }
     
     private func infoLabelLoad() {
+        
         let teamName = teamNameField.text ?? ""
-        let age = Int(ageButton.titleLabel?.text ?? "") ?? 2022
+        let age = Int(ageButton.titleLabel?.text ?? "") ?? 2000
         let performanceName = performanceNameField.text ?? ""
         let part = partButton.titleLabel?.text ?? ""
         
@@ -138,13 +174,28 @@ class ViewController: UIViewController {
     }
     
     private func editButtonChangeHidden(){
+        
         self.closeButton.isHidden = !closeButton.isHidden
         self.redoSubButton.isHidden = !redoSubButton.isHidden
         self.undoSubButton.isHidden = !undoSubButton.isHidden
+        
     }
     
     private func modelColorChange(color: UIColor){
+        
         self.editView.odorikoModel.colorChange(color: color)
+        
+    }
+}
+
+extension ViewController: PickerData {
+    func pickerSelectedDataLoad(_ value: String) {
+        
+        if ageButton.titleLabel?.text == "-" {
+            self.ageButton.setTitle(value, for: .normal)
+        }else if partButton.titleLabel?.text == "-" {
+            self.partButton.setTitle(value, for: .normal)
+        }
         
     }
 }
@@ -158,11 +209,9 @@ extension ViewController: UITextFieldDelegate {
             self.performanceNameField.resignFirstResponder()
         }
         
-        //self.teamNameField.resignFirstResponder()
-        //self.performanceNameField.resignFirstResponder()
-        
         self.infoLabelLoad()
         return true
+        
     }
 }
 

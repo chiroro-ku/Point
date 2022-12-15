@@ -232,7 +232,7 @@
         <!--Picker View Controller-->
         <scene sceneID="KeA-Aa-dwg">
             <objects>
-                <viewController storyboardIdentifier="picjerViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="KGx-iA-B9j" customClass="PickerViewController" customModule="Point" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="pickerViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="KGx-iA-B9j" customClass="PickerViewController" customModule="Point" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Edv-tB-FLh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -266,6 +266,11 @@
                             <constraint firstItem="Euf-wl-W8Q" firstAttribute="leading" secondItem="sUP-YC-ZBE" secondAttribute="leading" id="tmk-l0-18D"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="backButton" destination="mSj-jT-pIG" id="k0z-vh-zx5"/>
+                        <outlet property="pickerView" destination="Euf-wl-W8Q" id="r1X-GZ-sfi"/>
+                        <outlet property="textField" destination="QJQ-KO-ib9" id="let-ux-ftS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iy2-Df-tLQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

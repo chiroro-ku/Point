@@ -8,22 +8,69 @@
 import UIKit
 
 class PickerViewController: UIViewController {
-
+    
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var pickerView: UIPickerView!
+    
+    var list: [String] = []
+    var delegate: PickerData?
+    var selectedData: String = ""
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        self.backButton.addTarget(self, action: #selector(backButtonTapped(_:)), for: .touchUpInside)
+        
+        self.textField.delegate = self
+        
+        self.pickerView.delegate = self
+        self.pickerView.dataSource = self
+        
+        let row = pickerView.selectedRow(inComponent: 0)
+        self.selectedData = list[row]
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @objc private func backButtonTapped(_ sender: UIButton) {
+        
+        self.delegate?.pickerSelectedDataLoad(selectedData)
+        
+        self.dismiss(animated: true)
+        
     }
-    */
 
+}
+
+extension PickerViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return list.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return list[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        let row = pickerView.selectedRow(inComponent: 0)
+        self.selectedData = list[row]
+        
+    }
+}
+
+extension PickerViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        self.selectedData = textField.text ?? ""
+        self.textField.resignFirstResponder()
+        
+        return true
+    }
 }
