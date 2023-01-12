@@ -49,12 +49,14 @@ class BoneView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func addSubBoneView(_ view: BoneView, _ anchorPoint: CGPoint = CGPoint(x: 0.5, y: 0)){
+    func addSubBoneView(_ view: BoneView, _ anchorPoint: CGPoint = CGPoint(x: 0.5, y: 0), _ angle: CGFloat =  -Double.pi/2){
         super.addSubview(view)
         
         let frame = view.frame
         view.anchorPoint = anchorPoint
         view.frame = frame
+        
+        view.angle = angle
         
         self.subBones.append(view)
     }

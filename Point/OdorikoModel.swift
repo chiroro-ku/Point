@@ -10,16 +10,16 @@ import UIKit
 
 class OdorikoModel{
     
-    var face: BoneView
+    var face: BoneView!
     var body: BoneView
-    var rightUpperArm: BoneView
-    var rightArm: BoneView
-    var leftUpperArm: BoneView
-    var leftArm: BoneView
-    var rightUpperLeg: BoneView
-    var rightLeg: BoneView
-    var leftUpperLeg: BoneView
-    var leftLeg: BoneView
+    var rightUpperArm: BoneView!
+    var rightArm: BoneView!
+    var leftUpperArm: BoneView!
+    var leftArm: BoneView!
+    var rightUpperLeg: BoneView!
+    var rightLeg: BoneView!
+    var leftUpperLeg: BoneView!
+    var leftLeg: BoneView!
     
     var color: UIColor = .green
     
@@ -59,7 +59,7 @@ class OdorikoModel{
     
     init(center point:CGPoint){
         
-        self.body = BoneView(body: CGRect(origin: point, size: bodySize), color: color)
+        self.body = BoneView(body: CGRect(origin: CGPoint(x: point.x - bodySize.width/2, y: point.y), size: bodySize), color: color)
         
         self.face = BoneView(frame: CGRect(origin: CGPoint(x: faceSize.width/2, y: -faceSize.height), size: faceSize), color: color)
         self.face.layer.cornerRadius = face.frame.width/2
@@ -76,7 +76,7 @@ class OdorikoModel{
         self.leftUpperLeg = BoneView(frame: CGRect(origin: CGPoint(x: body.frame.width-boneSize.width/2, y: body.frame.height), size: boneSize), color: color)
         self.leftLeg = BoneView(frame: CGRect(origin: CGPoint(x: leftUpperLeg.frame.width/2, y: leftUpperLeg.frame.height), size: boneSize), color: color)
         
-        self.body.addSubBoneView(face, CGPoint(x: 0.5, y: 1.0))
+        self.body.addSubBoneView(face, CGPoint(x: 0.5, y: 1.0), Double.pi/2)
         self.body.addSubBoneView(rightUpperArm)
         self.rightUpperArm.addSubBoneView(rightArm)
         self.body.addSubBoneView(leftUpperArm)
