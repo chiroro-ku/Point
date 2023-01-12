@@ -22,7 +22,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var undoSubButton: UIButton!
     
     @IBOutlet weak var textView: UITextView!
+    
     @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var imageButton: UIButton!
     @IBOutlet weak var redoButton: UIButton!
     @IBOutlet weak var undoButton: UIButton!
     
@@ -60,6 +62,9 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         self.infoLabelLoad()
     }
     
@@ -146,9 +151,6 @@ class ViewController: UIViewController {
         pickerViewController.list = list
         pickerViewController.delegate = self
         self.present(pickerViewController, animated: true)
-        
-        self.infoLabelLoad()
-        
     }
     
     private func infoLabelLoad() {
