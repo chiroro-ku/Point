@@ -35,28 +35,33 @@ class BoneView: UIView {
         self.layer.borderColor = UIColor.black.cgColor
     }
     
+    init(body frame: CGRect, color: UIColor) {
+        
+        super.init(frame: frame)
+        
+        self.backgroundColor = color
+        self.layer.cornerRadius = 5
+        self.layer.borderWidth = 1
+        self.layer.borderColor = UIColor.black.cgColor
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func addSubview(_ view: UIView) {
+    func addSubBoneView(_ view: BoneView, _ anchorPoint: CGPoint = CGPoint(x: 0.5, y: 0), _ angle: CGFloat =  -Double.pi/2){
         super.addSubview(view)
         
-        guard let boneView = view as? BoneView else {
-            return
-        }
+        let frame = view.frame
+        view.anchorPoint = anchorPoint
+        view.frame = frame
         
-        let frame = boneView.frame
-        boneView.anchorPoint = CGPoint(x: 0.5, y: 0)
-        boneView.frame = frame
+        view.angle = angle
         
-        self.subBones.append(boneView)
+        self.subBones.append(view)
     }
     
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        let name = self.backgroundColor?.accessibilityName ?? "error"
-        
-        print(name)
         
         if !subBones.isEmpty {
             for subBone in subBones {

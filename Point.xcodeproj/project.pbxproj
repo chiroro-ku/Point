@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F698E7872942EF1C009BC625 /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F698E7862942EF1C009BC625 /* PickerViewController.swift */; };
+		F698E78B294B97EC009BC625 /* PickerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F698E78A294B97EC009BC625 /* PickerData.swift */; };
 		F6A9D7D429277E4C009F02F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A9D7D329277E4C009F02F4 /* AppDelegate.swift */; };
 		F6A9D7D629277E4C009F02F4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A9D7D529277E4C009F02F4 /* SceneDelegate.swift */; };
 		F6A9D7D829277E4C009F02F4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A9D7D729277E4C009F02F4 /* ViewController.swift */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F698E7862942EF1C009BC625 /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
+		F698E78A294B97EC009BC625 /* PickerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerData.swift; sourceTree = "<group>"; };
 		F6A9D7D029277E4C009F02F4 /* Point.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Point.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6A9D7D329277E4C009F02F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F6A9D7D529277E4C009F02F4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -75,6 +79,8 @@
 				F6A9D80829280088009F02F4 /* OdorikoModel.swift */,
 				F6A9D80A292800CA009F02F4 /* EditView.swift */,
 				F6A9D80C2929F9D7009F02F4 /* SetupViewController.swift */,
+				F698E7862942EF1C009BC625 /* PickerViewController.swift */,
+				F698E78A294B97EC009BC625 /* PickerData.swift */,
 			);
 			path = Point;
 			sourceTree = "<group>";
@@ -152,11 +158,13 @@
 			files = (
 				F6A9D8052927EEAF009F02F4 /* BoneView.swift in Sources */,
 				F6A9D7D829277E4C009F02F4 /* ViewController.swift in Sources */,
+				F698E7872942EF1C009BC625 /* PickerViewController.swift in Sources */,
 				F6A9D80B292800CA009F02F4 /* EditView.swift in Sources */,
 				F6A9D7D429277E4C009F02F4 /* AppDelegate.swift in Sources */,
 				F6A9D7D629277E4C009F02F4 /* SceneDelegate.swift in Sources */,
 				F6A9D80929280088009F02F4 /* OdorikoModel.swift in Sources */,
 				F6A9D80D2929F9D7009F02F4 /* SetupViewController.swift in Sources */,
+				F698E78B294B97EC009BC625 /* PickerData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

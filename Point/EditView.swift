@@ -27,10 +27,10 @@ class EditView: UIView {
     
     private func editViewInit(){
         
-        let facePoint = CGPoint(x: frame.width/2, y: frame.height/5)
-        self.odorikoModel = OdorikoModel(facePoint: facePoint)
+        let point = CGPoint(x: frame.width/2, y: frame.height/3)
+        self.odorikoModel = OdorikoModel(center: point)
         
-        self.addSubview(odorikoModel.face)
+        self.addSubview(odorikoModel.centerBody())
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -39,15 +39,17 @@ class EditView: UIView {
             return
         }
         
-        let touchesPoint = touchesEvent.location(in: touchesView.superview)
-        let targetPoint = touchesView.center
-        let angle = atan2(targetPoint.y-touchesPoint.y, targetPoint.x-touchesPoint.x)
+        let touchesLocation = touchesEvent.location(in: touchesView.superview)
+        let targetCenter = touchesView.center
+        let angle = atan2(targetCenter.y-touchesLocation.y, targetCenter.x-touchesLocation.x)
         touchesView.rotated(by: angle)
     }
     
-    func toImage() -> UIImage?{
+    func toImage(_ transparent: Bool = true) -> UIImage?{
         
-        self.backgroundColor = .clear
+        if transparent {
+            self.backgroundColor = .clear
+        }
         
         UIGraphicsBeginImageContextWithOptions(self.bounds.size, false, 0.0)
         guard let context = UIGraphicsGetCurrentContext() else{
