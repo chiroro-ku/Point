@@ -45,9 +45,11 @@ class EditView: UIView {
         touchesView.rotated(by: angle)
     }
     
-    func toImage() -> UIImage?{
+    func toImage(_ transparent: Bool = true) -> UIImage?{
         
-        self.backgroundColor = .clear
+        if transparent {
+            self.backgroundColor = .clear
+        }
         
         UIGraphicsBeginImageContextWithOptions(self.bounds.size, false, 0.0)
         guard let context = UIGraphicsGetCurrentContext() else{

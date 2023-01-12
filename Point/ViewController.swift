@@ -53,19 +53,22 @@ class ViewController: UIViewController {
         self.undoSubButton.addTarget(self, action: #selector(undoButtonTapped(_:)), for: .touchUpInside)
         
         
+        self.textView.delegate = self
+        
         self.doneButton.addTarget(self, action: #selector(doneButtonTapped(_:)), for: .touchUpInside)
+        
+        self.imageButton.addTarget(self, action: #selector(imageButtonTapped(_:)), for: .touchUpInside)
         
         self.redoButton.addTarget(self, action: #selector(redoButtonTapped(_:)), for: .touchUpInside)
         
         self.undoButton.addTarget(self, action: #selector(undoButtonTapped(_:)), for: .touchUpInside)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
         self.infoLabelLoad()
+        
     }
     
     @objc private func ageButtonTapped(_ sender: UIButton) {
@@ -89,6 +92,8 @@ class ViewController: UIViewController {
     @objc private func closeButtonTapped(_ sender: UIButton) {
         
         self.textView.resignFirstResponder()
+        self.editButtonChangeHidden()
+        self.view.frame.origin.y = 0
         
     }
     
@@ -105,40 +110,19 @@ class ViewController: UIViewController {
         
     }
     
+    @objc private func imageButtonTapped(_ sender: UIButton) {
+        
+        let image = self.editView.toImage(false)
+        UIPasteboard.general.image = image
+        
+    }
+    
     @objc private func redoButtonTapped(_ sender: UIButton) {
         print("redoButtonTapped")
     }
     
     @objc private func undoButtonTapped(_ sender: UIButton) {
         print("undoButtonTapped")
-    }
-    
-    @objc func keyboardWillShow(notification: NSNotification) {
-        
-        if !textView.isFirstResponder {
-            return
-        }
-        
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0 {
-                self.view.frame.origin.y -= editView.frame.origin.y - self.view.safeAreaInsets.top - 10
-                
-                self.editButtonChangeHidden()
-            } else {
-                let suggestionHeight = self.view.frame.origin.y + keyboardSize.height
-                self.view.frame.origin.y -= suggestionHeight
-                
-                self.editButtonChangeHidden()
-            }
-        }
-    }
-    
-    @objc func keyboardWillHide() {
-        
-        if self.view.frame.origin.y != 0 {
-            self.view.frame.origin.y = 0
-        }
-        
     }
     
     private func pickerViewControllerLoad(_ list: [String]) {
@@ -184,7 +168,7 @@ class ViewController: UIViewController {
     }
     
     private func modelColorChange(color: UIColor){
-        
+    
         self.editView.odorikoModel.colorChange(color: color)
         
     }
@@ -217,7 +201,17 @@ extension ViewController: UITextFieldDelegate {
     }
 }
 
+extension ViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+
+        self.view.frame.origin.y -= editView.frame.origin.y - self.view.safeAreaInsets.top
+        self.editButtonChangeHidden()
+        
+    }
+}
+
 extension UITextView {
+    
     func toImage() -> UIImage?{
         
         self.backgroundColor = .clear
